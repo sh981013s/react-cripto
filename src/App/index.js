@@ -1,9 +1,12 @@
 import './App.css';
 import AppLayout from './AppLayout';
+import AppBar from './AppBar';
 
 function App() {
   return (
-    <AppLayout>Hello World</AppLayout>
+    <AppLayout>
+      <AppBar>Hello World</AppBar>
+    </AppLayout>
   );
 }
 
