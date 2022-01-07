@@ -1,8 +1,9 @@
 import './App.css';
+import AppLayout from './AppLayout';
 
 function App() {
   return (
-    <div>Hello World</div>
+    <AppLayout>Hello World</AppLayout>
   );
 }
 
