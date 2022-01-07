@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { AppContext } from './AppProvider';
 
 const Logo = styled.div`
   font-size: 1.5em;
@@ -21,7 +22,13 @@ const ControlButtonElem = styled.div`
 
 const ControlButton = ({ name, active }) => {
   return (
-    <ControlButtonElem active={active}>{toProperCase(name)}</ControlButtonElem>
+    <AppContext.Consumer>
+      {({ page, setPage }) => (
+        <ControlButtonElem active={page === name} onClick={() => setPage(name)}>
+          {toProperCase(name)}
+        </ControlButtonElem>
+      )}
+    </AppContext.Consumer>
   );
 };
 
@@ -34,7 +41,7 @@ const AppBar = () => {
     <Bar>
       <Logo>CryptoCrypto</Logo>
       <div />
-      <ControlButton active name="dashboard" />
+      <ControlButton name="dashboard" />
       <ControlButton name="settings" />
     </Bar>
   );
