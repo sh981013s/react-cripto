@@ -43,8 +43,8 @@ const PriceSingleTile = ({ sym, data }) => {
       <CoinHeaderGridStyled>
         <div>{sym}</div>
         <JustifyRight>
-          <ChangePct red={data.CHANGEPCT24HOUR < 0}>
-            {numberFormat(data.CHANGEPCT24HOUR)}
+          <ChangePct red={data.CHANGEPCTHOUR < 0}>
+            {numberFormat(data.CHANGEPCTHOUR)}
           </ChangePct>
         </JustifyRight>
       </CoinHeaderGridStyled>
@@ -58,8 +58,8 @@ const PriceTileCompact = ({ sym, data }) => {
     <PriceTileStyled compact>
       <JustifyLeft>{sym}</JustifyLeft>
       <JustifyRight>
-        <ChangePct red={data.CHANGEPCT24HOUR < 0}>
-          {numberFormat(data.CHANGEPCT24HOUR)}
+        <ChangePct red={data.CHANGEPCTHOUR < 0}>
+          {numberFormat(data.CHANGEPCTHOUR)}
         </ChangePct>
       </JustifyRight>
       <div>₩{round(data.PRICE, 2)}</div>
