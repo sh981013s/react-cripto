@@ -59,7 +59,7 @@ export class AppProvider extends React.Component {
     let returnData = [];
     for (let i = 0; i < this.state.favorites.length; i++) {
       try {
-        let priceData = await cc.priceFull(this.state.favorites[i], 'USD');
+        let priceData = await cc.priceFull(this.state.favorites[i], 'KRW');
         returnData.push(priceData);
       } catch (e) {
         console.warn('Fetch Price Err');
