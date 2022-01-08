@@ -2,6 +2,7 @@ import Welcome from './WelcomeMessage';
 import ConfirmButton from './ConfirmedButton';
 import Page from '../Shared/Page';
 import CoinGrid from './CoinGrid';
+import Search from './Search';
 
 const Settings = () => {
   return (
@@ -9,6 +10,7 @@ const Settings = () => {
       <Welcome />
       <CoinGrid topSection />
       <ConfirmButton />
+      <Search />
       <CoinGrid />
     </Page>
   );
