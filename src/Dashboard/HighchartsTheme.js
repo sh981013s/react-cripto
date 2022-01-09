@@ -1,5 +1,3 @@
-import { lightTheme } from '../Shared/Styles';
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   colors: [
@@ -13,11 +11,11 @@ export default {
     '#1B2893',
   ],
   chart: {
-    backgroundColor: lightTheme ? 'white' : '#061a44',
+    backgroundColor: '#061a44',
     borderColor: '#000000',
     borderWidth: 0,
     className: 'dark-container',
-    plotBackgroundColor: lightTheme ? 'white' : '#061a44',
+    plotBackgroundColor: '#061a44',
     plotBorderWidth: 0,
   },
   title: {

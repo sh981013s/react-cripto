@@ -2,10 +2,10 @@ import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
 
+const CRYPTOCOMPARE_KEY = process.env.REACT_APP_CRYPTOCOMPARE_KEY;
+
 const cc = require('cryptocompare');
-cc.setApiKey(
-  '357e110e46cbbc7c33c9e107baf2d4a72efea9b586099e1d942faf87e663f4d0'
-);
+cc.setApiKey(CRYPTOCOMPARE_KEY);
 
 export const AppContext = React.createContext();
 
