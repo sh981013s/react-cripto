@@ -1,8 +1,9 @@
 import { round } from 'lodash';
 import styled, { css } from 'styled-components';
 import { SelectableTile } from '../Shared/Tile';
-import { fontSize3, fontSizeBig } from '../Shared/Styles';
+import { greenBoxShadow, fontSize3, fontSizeBig } from '../Shared/Styles';
 import { CoinHeaderGridStyled } from '../Settings/CoinHeaderGrid';
+import { AppContext } from '../App/AppProvider';
 
 const numberFormat = (num) => {
   const formattedNum = +(num + '').slice(0, 7);
@@ -35,11 +36,26 @@ const PriceTileStyled = styled(SelectableTile)`
       grid-template-columns: repeat(3, 1fr);
       justify-items: right;
     `}
+
+  ${(props) =>
+    props.currentFavorite &&
+    css`
+      ${greenBoxShadow};
+      pointer-events: none;
+    `}
 `;
 
-const PriceSingleTile = ({ sym, data }) => {
+const PriceSingleTile = ({
+  sym,
+  data,
+  currentFavorite,
+  setCurrentFavorite,
+}) => {
   return (
-    <PriceTileStyled>
+    <PriceTileStyled
+      onClick={setCurrentFavorite}
+      currentFavorite={currentFavorite}
+    >
       <CoinHeaderGridStyled>
         <div>{sym}</div>
         <JustifyRight>
@@ -53,9 +69,18 @@ const PriceSingleTile = ({ sym, data }) => {
   );
 };
 
-const PriceTileCompact = ({ sym, data }) => {
+const PriceTileCompact = ({
+  sym,
+  data,
+  currentFavorite,
+  setCurrentFavorite,
+}) => {
   return (
-    <PriceTileStyled compact>
+    <PriceTileStyled
+      onClick={setCurrentFavorite}
+      compact
+      currentFavorite={currentFavorite}
+    >
       <JustifyLeft>{sym}</JustifyLeft>
       <JustifyRight>
         <ChangePct red={data.CHANGEPCTHOUR < 0}>
@@ -71,7 +96,18 @@ const PriceTile = ({ price, index }) => {
   let sym = Object.keys(price)[0];
   let data = price[sym]['KRW'];
   let TileClass = index < 5 ? PriceSingleTile : PriceTileCompact;
-  return <TileClass sym={sym} data={data} />;
+  return (
+    <AppContext.Consumer>
+      {({ currentFavorite, setCurrentFavorite }) => (
+        <TileClass
+          sym={sym}
+          data={data}
+          currentFavorite={currentFavorite === sym}
+          setCurrentFavorite={() => setCurrentFavorite(sym)}
+        />
+      )}
+    </AppContext.Consumer>
+  );
 };
 
 export default PriceTile;
